@@ -5,6 +5,11 @@
 # Session Data files
 .RData
 
+# Raw data files
+*.csv
+*.sav
+*.dta
+
 # User-specific files
 .Ruserdata
 
@@ -40,3 +45,5 @@ vignettes/*.pdf
 
 # R Project file
 *.Rproj
+
+#
