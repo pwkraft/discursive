@@ -1,3 +1,60 @@
+#' Title
+#'
+#' @param data
+#' @param openends
+#' @param meta
+#' @param customstopwords
+#' @param lower.tresh
+#' @param K
+#' @param seed
+#'
+#' @return
+#' @export
+#' @import stm
+#'
+#' @examples
+discursive_size <- function(data, openends, meta, customstopwords = NULL, lower.tresh = 10, K = 25, seed = 12345){
+
+  # meta = c("age", "educ_cont", "pid_cont", "educ_pid", "female")
+  # openends = c(paste0("oe0", 1:9), "oe10")
+  # customstopwords = c("dont", "hes", "shes", "that", "etc")
+
+  ### remove missings on metadata
+  nomis_id <- which(!apply(data[, meta], 1, anyNA))
+  nomis <- data[nomis_id, ]
+
+  ### combine regular survey and open-ended data, remove empty responses
+  resp <- apply(nomis[, openends], 1, paste, collapse = " ")
+
+  ### remove additional whitespaces
+  resp <- gsub("\\s+"," ", resp)
+  resp <- gsub("(^\\s+|\\s+$)","", resp)
+
+  ### process for stm
+  processed <- stm::textProcessor(resp, metadata = nomis[,meta],
+                                  customstopwords = customstopwords)
+  out <- stm::prepDocuments(processed$documents, processed$vocab, processed$meta,
+                            lower.thresh = lower.tresh)
+
+  ### remove discarded observations from data
+  nomis <- nomis[-c(processed$docs.removed, out$docs.removed), ]
+  nomis_id <- nomis_id[-c(processed$docs.removed, out$docs.removed)]
+
+  ### stm fit with 49 topics
+  stm_fit <- stm::stm(out$documents, out$vocab, prevalence = as.matrix(out$meta),
+                      K = K, seed = seed)
+
+  ### compute number of considerations
+  size <- ntopics(stm_fit, out)
+
+  ### add NAs for missing observations
+  out <- rep(NA, nrow(data))
+  out[nomis_id] <- size
+
+  return(out)
+}
+
+
 #' Compute number of topics based on stm results
 #'
 #' @param x: stm model result
