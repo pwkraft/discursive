@@ -13,11 +13,7 @@
 #' @import stm
 #'
 #' @examples
-discursive_size <- function(data, openends, meta, customstopwords = NULL, lower.tresh = 10, K = 25, seed = 12345){
-
-  # meta = c("age", "educ_cont", "pid_cont", "educ_pid", "female")
-  # openends = c(paste0("oe0", 1:9), "oe10")
-  # customstopwords = c("dont", "hes", "shes", "that", "etc")
+discursive_size <- function(data, openends, meta, customstopwords = NULL, lower.tresh = 10, K = 0, seed = NULL){
 
   ### remove missings on metadata
   nomis_id <- which(!apply(data[, meta], 1, anyNA))
