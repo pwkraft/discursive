@@ -11,6 +11,8 @@
 #' @return
 #' @export
 #' @import stm
+#' @import tm
+#' @import SnowballC
 #'
 #' @examples
 discursive_size <- function(data, openends, meta, customstopwords = NULL, lower.tresh = 10, K = 0, seed = NULL){
@@ -58,6 +60,7 @@ discursive_size <- function(data, openends, meta, customstopwords = NULL, lower.
 #'
 #' @return data.frame: estimated number of topics and distinctiveness of word choice
 #' @import stm
+#' @import utils
 #' @export
 #'
 #' @examples
@@ -81,23 +84,23 @@ ntopics <- function(x, docs){
   pt_wx <- array(NA, c(nobs, nwords, ntopics))
 
   cat("\nComputing P(t_i|w,X):\n")
-  pb <- txtProgressBar(min = 1, max = nwords, style = 3)
+  pb <- utils::txtProgressBar(min = 1, max = nwords, style = 3)
   for(w in 1:nwords){
     for(t in 1:ntopics){
       pt_wx[,w,t] <- pw_t[t,w] * pt_x[,t] / pw_x[,w]
     }
-    setTxtProgressBar(pb, w)
+    utils::setTxtProgressBar(pb, w)
   }
   close(pb)
 
   ## compute sophistication components
   cat("\nComputing sophistication components:\n")
   ntopics <- rep(NA, nobs)
-  pb <- txtProgressBar(min = 1, max = nobs, style = 3)
+  pb <- utils::txtProgressBar(min = 1, max = nobs, style = 3)
   for(n in 1:nobs){
     maxtopic_wx <- apply(pt_wx[n,,],1,which.max) # which topic has the highest probability for each word (given X)
     ntopics[n] <- length(unique(maxtopic_wx[docs$documents[[n]][1,]])) # number of topics in response
-    setTxtProgressBar(pb, n)
+    utils::setTxtProgressBar(pb, n)
   }
   cat("\n\n")
 
