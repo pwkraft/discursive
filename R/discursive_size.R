@@ -65,7 +65,7 @@ discursive_size <- function(data, openends, meta, customstopwords = NULL, lower.
 #'
 #' @examples
 ntopics <- function(x, docs){
-  if(class(x)!="STM") stop("x must be an STM object")
+  if(!inherits(x, "STM")) stop("x must be an STM object")
 
   ## P(t|X): probability of topic t given covariates X [nobs,ntopics]
   pt_x <- x$theta

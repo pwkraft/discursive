@@ -9,6 +9,9 @@
 #'
 #' @examples
 discursive_range <- function(data, openends) {
+  if(!inherits(openends, "character"))
+  ## TODO: add if condition in case openends are only length 1!
+
   range <- apply(data[, openends], 1, oe_shannon)
   return(range)
 }
