@@ -6,7 +6,13 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of discursive is to …
+This package implements a simple but powerful framework to measure
+political sophistication based on open-ended survey responses.
+Discursive sophistication captures the complexity of individual attitude
+expression by quantifying its relative size, range, and constraint. For
+more information on the measurement approach see: Kraft, Patrick W.
+2023. “Women Also Know Stuff: Challenging the Gender Gap in Political
+Sophistication.” American Political Science Review (forthcoming).
 
 ## Installation
 
