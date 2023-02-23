@@ -44,19 +44,12 @@ discursive <- function(data, openends, dictionary, meta, customstopwords = NULL,
 #' @export
 #'
 #' @examples
-discursive_combine <- function(size, range, constraint, type = c("scale","average","scale_average","product")) {
-  if(type == "scale"){
-    out <- as.numeric(scale(size + range + constraint))
-  }
-  if(type == "average"){
-    out <- (size + range + constraint)/3
-  }
-  if(type == "scale_average"){
-    out <- as.numeric(scale(size) + scale(range) + scale(constraint))/3
-  }
-  if(type == "product"){
-    out <- size * range * constraint
-  }
-  ## add attributes
-  return(out)
+discursive_combine <- function(size, range, constraint, type = c("scale","average","average_scale","product")) {
+  type <- match.arg(type)
+  switch(type,
+         scale = as.numeric(scale(size + range + constraint)),
+         average = (size + range + constraint)/3,
+         average_scale = as.numeric(scale(size) + scale(range) + scale(constraint))/3,
+         product = size * range * constraint)
+  ## TODO: add attributes?
 }
