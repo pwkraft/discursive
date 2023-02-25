@@ -17,7 +17,7 @@ discursive <- function(data, openends, dictionary, meta, customstopwords = NULL,
 
   # data = cces
   # openends = c(paste0("oe0", 1:9), "oe10")
-  # dictionary = constraint$constraint
+  # dictionary = dict_constraint
   # meta = c("age", "educ_cont", "pid_cont", "educ_pid", "female")
   # customstopwords = c("dont", "hes", "shes", "that", "etc")
   # K = 25
@@ -28,7 +28,9 @@ discursive <- function(data, openends, dictionary, meta, customstopwords = NULL,
                              customstopwords = customstopwords,
                              lower.tresh = lower.tresh,
                              K = K, seed = seed)
+
   oe_range <- discursive_range(data = data, openends = openends)
+
   oe_constraint <- discursive_constraint(data = data, openends = openends, dictionary = dictionary)
 
   discursive_combine(oe_size, oe_range, oe_constraint)

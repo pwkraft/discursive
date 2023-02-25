@@ -2,13 +2,25 @@
 % Please edit documentation in R/discursive_constraint.R
 \name{discursive_constraint}
 \alias{discursive_constraint}
-\title{Title}
+\title{Compute the constraint component of discursive sophistication}
 \usage{
-discursive_constraint(data, openends, dictionary)
+discursive_constraint(data, openends, dictionary, remove_duplicates = TRUE)
 }
 \arguments{
-\item{dictionary}{}
+\item{data}{A data frame.}
+
+\item{openends}{A character vector containing variable names of open-ended responses in \code{data}.}
+
+\item{dictionary}{A character vector containing dictionary terms to flag conjunctions and exclusive words. May include regular expressions.}
+
+\item{remove_duplicates}{Logical. If TRUE duplicates in \code{dictionary} are removed.}
+}
+\value{
+A numeric vector with the same length as the number of rows in \code{data}.
 }
 \description{
-Title
+This function takes a data frame (\code{data}) containing a set of open-ended responses (\code{openends}) and a \code{dictionary} to identify terms that signal a higher level of constraint between different considerations (usually conjunctions and exclusive words). It returns a numeric vector of dictionary counts re-scaled to range from 0 to 1. See Kraft (2023) for details.
+}
+\examples{
+discursive_constraint(data = cces, openends = c(paste0("oe0", 1:9), "oe10"), dictionary = dict_constraint)
 }

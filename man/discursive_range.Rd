@@ -2,7 +2,7 @@
 % Please edit documentation in R/discursive_range.R
 \name{discursive_range}
 \alias{discursive_range}
-\title{Compute range component of discursive sophistication measure}
+\title{Compute the range component of discursive sophistication}
 \usage{
 discursive_range(data, openends)
 }
@@ -15,5 +15,5 @@ discursive_range(data, openends)
 Numeric vector of shannon entropy in topic proportions
 }
 \description{
-Compute range component of discursive sophistication measure
+Compute the range component of discursive sophistication
 }

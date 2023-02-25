@@ -2,7 +2,7 @@
 % Please edit documentation in R/discursive_size.R
 \name{discursive_size}
 \alias{discursive_size}
-\title{Title}
+\title{Compute the size component of discursive sophistication}
 \usage{
 discursive_size(
   data,
@@ -18,5 +18,5 @@ discursive_size(
 \item{seed}{}
 }
 \description{
-Title
+Compute the size component of discursive sophistication
 }

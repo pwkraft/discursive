@@ -4,7 +4,12 @@
 \alias{discursive_combine}
 \title{Title}
 \usage{
-discursive_combine(size, range, constraint)
+discursive_combine(
+  size,
+  range,
+  constraint,
+  type = c("scale", "average", "average_scale", "product")
+)
 }
 \arguments{
 \item{constraint}{}

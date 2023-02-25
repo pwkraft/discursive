@@ -1,4 +1,4 @@
-#' Title
+#' Compute the size component of discursive sophistication
 #'
 #' @param data
 #' @param openends

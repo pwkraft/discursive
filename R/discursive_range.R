@@ -1,4 +1,4 @@
-#' Compute range component of discursive sophistication measure
+#' Compute the range component of discursive sophistication
 #'
 #' @param data Data frame containing open-ended responses
 #' @param openends Character vector containing variable names of open-ended items
@@ -9,8 +9,10 @@
 #'
 #' @examples
 discursive_range <- function(data, openends) {
-  if(!inherits(openends, "character"))
+  if(!inherits(openends, "character")) stop("openends must be a character vector")
   ## TODO: add if condition in case openends are only length 1!
+
+  if(length(openends == 1))
 
   range <- apply(data[, openends], 1, oe_shannon)
   return(range)
