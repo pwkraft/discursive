@@ -28,9 +28,11 @@ discursive_range <- function(data, openends) {
 
 #' Compute Shannon entropy
 #'
+#' Internal function to compute Shannon entropy in relative word counts across a set of elements in a character vecotr. Entropy is re-scaled to range from 0 to 1. Function used in [discursive_range()].
+#'
 #' @param x Character vector containing open-ended responses.
 #'
-#' @return Numeric vector with the same length as x. Contains Shannon entropy in individual response lengths re-scaled to range from 0 to 1.
+#' @return Numeric vector with the same length as x.
 #'
 #' @examples
 #' \dontrun{
