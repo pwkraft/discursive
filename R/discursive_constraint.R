@@ -12,10 +12,13 @@
 #' @export
 #'
 #' @examples
-#' discursive_constraint(data = cces, openends = c(paste0("oe0", 1:9), "oe10"), dictionary = dict_constraint)
-discursive_constraint <- function(data, openends, dictionary, remove_duplicates = TRUE) {
-  ## Check input types
-  if(!is.data.frame(data)) stop("data must be a data.frame or tibble.")
+#' discursive_constraint(data = cces,
+#'                       openends = c(paste0("oe0", 1:9), "oe10"),
+#'                       dictionary = dict_constraint)
+discursive_constraint <- function(data, openends, dictionary, remove_duplicates = FALSE) {
+
+  ## Check input
+  if(!is.data.frame(data)) stop("data must be a data frame.")
   if(!is.character(openends)) stop("openends must be a character vector.")
   if(!is.character(dictionary)) stop("dictionary must be a character vector.")
 

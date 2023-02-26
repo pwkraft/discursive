@@ -10,8 +10,13 @@ oe_shannon(x)
 \item{x}{Character vector containing open-ended responses}
 }
 \value{
-shannon entropy
+Numeric vector with the same length as x. Contains Shannon entropy in individual response lengths re-scaled to range from 0 to 1.
 }
 \description{
 Compute Shannon entropy
+}
+\examples{
+\dontrun{
+oe_shannon(c(paste(rep("Word", 10), collapse = " "), "Word"))
+}
 }

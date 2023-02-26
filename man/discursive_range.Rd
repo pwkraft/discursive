@@ -7,13 +7,17 @@
 discursive_range(data, openends)
 }
 \arguments{
-\item{data}{Data frame containing open-ended responses}
+\item{data}{A data frame.}
 
-\item{openends}{Character vector containing variable names of open-ended items}
+\item{openends}{A character vector containing variable names of open-ended responses in \code{data}.}
 }
 \value{
-Numeric vector of shannon entropy in topic proportions
+A numeric vector with the same length as the number of rows in \code{data}.
 }
 \description{
-Compute the range component of discursive sophistication
+This function takes a data frame (\code{data}) containing a set of open-ended responses (\code{openends}) to compute the Shannon entropy in individual response lengths across items. The function returns a numeric vector of topic counts re-scaled to range from 0 to 1. See Kraft (2023) for details.
+}
+\examples{
+discursive_range(data = cces,
+                 openends = c(paste0("oe0", 1:9), "oe10"))
 }

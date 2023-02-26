@@ -2,22 +2,50 @@
 % Please edit documentation in R/discursive.R
 \name{discursive}
 \alias{discursive}
-\title{Title}
+\title{Compute discursive sophistication for a set of open-ended responses}
 \usage{
 discursive(
   data,
   openends,
-  dictionary,
   meta,
-  customstopwords = NULL,
-  lower.tresh = 10,
-  K = 0,
-  seed = NULL
+  args_textProcessor = NULL,
+  args_prepDocuments = NULL,
+  args_stm = NULL,
+  dictionary,
+  remove_duplicates = FALSE,
+  type = c("scale", "average", "average_scale", "product")
 )
 }
 \arguments{
-\item{seed}{}
+\item{data}{A data frame.}
+
+\item{openends}{A character vector containing variable names of open-ended responses in \code{data}.}
+
+\item{meta}{A character vector containing topic prevalence covariates included in \code{data}. See \code{\link[stm:stm]{stm::stm()}} for details.}
+
+\item{args_textProcessor}{A named list containing additional arguments passed to \code{\link[stm:textProcessor]{stm::textProcessor()}}.}
+
+\item{args_prepDocuments}{A named list containing additional arguments passed to \code{\link[stm:prepDocuments]{stm::prepDocuments()}}.}
+
+\item{args_stm}{A named list containing additional arguments passed to \code{\link[stm:stm]{stm::stm()}}.}
+
+\item{dictionary}{A character vector containing dictionary terms to flag conjunctions and exclusive words. May include regular expressions.}
+
+\item{remove_duplicates}{Logical. If TRUE duplicates in \code{dictionary} are removed.}
+
+\item{type}{The method of combining the three components, must be "scale", "average", "average_scale", or "product". The default is "scale", which creates an additive index that is re-scaled to mean 0 and standard deviation 1. Alternatively, "average" creates the same additive index without re-scaling; "average_scale" re-scales each individual component to mean 0 and standard deviation 1 before creating the additive index; "product" creates a multiplicative index.}
+}
+\value{
+A numeric vector with the same length as the number of rows in \code{data}.
 }
 \description{
-Title
+This function takes a data frame (\code{data}) containing a set of open-ended responses (\code{openends}) to compute the three components of discursive sophistication (size, range, and constraint) and combines them in a single scale. See Kraft (2023) for details.
+}
+\examples{
+discursive(data = cces,
+           openends = c(paste0("oe0", 1:9), "oe10"),
+           meta = c("age", "educ_cont", "pid_cont", "educ_pid", "female"),
+           args_prepDocuments = list(lower.thresh = 10),
+           args_stm = list(K = 25, seed = 12345),
+           dictionary = dict_constraint)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/discursive.R
 \name{discursive_combine}
 \alias{discursive_combine}
-\title{Title}
+\title{Combine three components of discursive sophistication in a single scale}
 \usage{
 discursive_combine(
   size,
@@ -12,8 +12,20 @@ discursive_combine(
 )
 }
 \arguments{
-\item{constraint}{}
+\item{size}{A numeric vector containing the size component of discursive sophistication. Usually created via \code{\link[=discursive_size]{discursive_size()}}.}
+
+\item{range}{A numeric vector containing the range component of discursive sophistication. Usually created via \code{\link[=discursive_range]{discursive_range()}}.}
+
+\item{constraint}{A numeric vector containing the constraint component of discursive sophistication. Usually created via \code{\link[=discursive_constraint]{discursive_constraint()}}.}
+
+\item{type}{The method of combining the three components, must be "scale", "average", "average_scale", or "product". The default is "scale", which creates an additive index that is re-scaled to mean 0 and standard deviation 1. Alternatively, "average" creates the same additive index without re-scaling; "average_scale" re-scales each individual component to mean 0 and standard deviation 1 before creating the additive index; "product" creates a multiplicative index.}
+}
+\value{
+A numeric vector with the same length as the number of rows in \code{data}.
 }
 \description{
-Title
+This function combines the \code{size}, \code{range}, and \code{constraint} of open-ended responses in a single scale. See Kraft (2023) for details.
+}
+\examples{
+discursive_combine(size = runif(100), range = runif(100), constraint = runif(100))
 }

@@ -8,15 +8,34 @@ discursive_size(
   data,
   openends,
   meta,
-  customstopwords = NULL,
-  lower.tresh = 10,
-  K = 0,
-  seed = NULL
+  args_textProcessor = NULL,
+  args_prepDocuments = NULL,
+  args_stm = NULL
 )
 }
 \arguments{
-\item{seed}{}
+\item{data}{A data frame.}
+
+\item{openends}{A character vector containing variable names of open-ended responses in \code{data}.}
+
+\item{meta}{A character vector containing topic prevalence covariates included in \code{data}. See \code{\link[stm:stm]{stm::stm()}} for details.}
+
+\item{args_textProcessor}{A named list containing additional arguments passed to \code{\link[stm:textProcessor]{stm::textProcessor()}}.}
+
+\item{args_prepDocuments}{A named list containing additional arguments passed to \code{\link[stm:prepDocuments]{stm::prepDocuments()}}.}
+
+\item{args_stm}{A named list containing additional arguments passed to \code{\link[stm:stm]{stm::stm()}}.}
+}
+\value{
+A numeric vector with the same length as the number of rows in \code{data}.
 }
 \description{
-Compute the size component of discursive sophistication
+This function takes a data frame (\code{data}) containing a set of open-ended responses (\code{openends}) and additional arguments passed to \code{\link[stm:textProcessor]{stm::textProcessor()}} and \code{\link[stm:prepDocuments]{stm::prepDocuments()}} to estimate a structural topic model via \code{\link[stm:stm]{stm::stm()}}. The results of the the structural topic model are used to compute the relative number of topics raised in each open-ended response. The function returns a numeric vector of topic counts re-scaled to range from 0 to 1. See Kraft (2023) for details.
+}
+\examples{
+discursive_size(data = cces,
+                openends = c(paste0("oe0", 1:9), "oe10"),
+                meta = c("age", "educ_cont", "pid_cont", "educ_pid", "female"),
+                args_prepDocuments = list(lower.thresh = 10),
+                args_stm = list(K = 25, seed = 12345))
 }
