@@ -91,12 +91,17 @@ discursive_size <- function(data, openends, meta,
   size <- ntopics(stm_fit, out)
 
   ### Add NAs for missing observations
-  out <- rep(NA, nrow(data))
-  out[nomis_id] <- size
+  size_na <- rep(NA, nrow(data))
+  size_na[nomis_id] <- size
 
   ## Return output
   ## TODO: add option to return complete stm output in larger object
-  out
+  list(
+    size = size_na,
+    out_textProcessor = processed,
+    out_prepDocuments = out,
+    out_stm = stm_fit
+  )
 }
 
 

@@ -36,7 +36,19 @@ discursive <- function(data, openends, meta, args_textProcessor = NULL, args_pre
 
   oe_constraint <- discursive_constraint(data = data, openends = openends, dictionary = dictionary)
 
-  discursive_combine(oe_size, oe_range, oe_constraint, type = type)
+  oe_discursive <- discursive_combine(oe_size, oe_range, oe_constraint, type = type)
+
+  ## TODO: output of class discursive
+  list(
+    output = data.frame(
+      size = oe_size$size,
+      range = oe_range,
+      constraint = oe_constraint
+    ),
+    out_textProcessor = oe_size$out_textProcessor,
+    out_prepDocuments = oe_size$out_prepDocuments,
+    out_stm = oe_size$out_stm
+  )
 }
 
 #' Combine three components of discursive sophistication in a single scale
