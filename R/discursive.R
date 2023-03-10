@@ -38,16 +38,17 @@ discursive <- function(data, openends, meta, args_textProcessor = NULL, args_pre
 
   oe_discursive <- discursive_combine(oe_size, oe_range, oe_constraint, type = type)
 
-  ## TODO: output of class discursive
+  ## TODO: output of class discursive, add description of elements in documentation
   list(
     output = data.frame(
       size = oe_size$size,
       range = oe_range,
-      constraint = oe_constraint
+      constraint = oe_constraint,
+      discursive = oe_discursive
     ),
-    out_textProcessor = oe_size$out_textProcessor,
-    out_prepDocuments = oe_size$out_prepDocuments,
-    out_stm = oe_size$out_stm
+    textProcessor = oe_size$textProcessor,
+    prepDocuments = oe_size$prepDocuments,
+    stm = oe_size$stm
   )
 }
 
@@ -68,9 +69,9 @@ discursive <- function(data, openends, meta, args_textProcessor = NULL, args_pre
 discursive_combine <- function(size, range, constraint, type = c("scale","average","average_scale","product")) {
   type <- match.arg(type)
   switch(type,
-         scale = as.numeric(scale(size + range + constraint)),
-         average = (size + range + constraint)/3,
-         average_scale = as.numeric(scale(size) + scale(range) + scale(constraint))/3,
-         product = size * range * constraint)
+         scale = as.numeric(scale(size$size + range + constraint)),
+         average = (size$size + range + constraint)/3,
+         average_scale = as.numeric(scale(size$size) + scale(range) + scale(constraint))/3,
+         product = size$size * range * constraint)
   ## TODO: add attributes to save output type
 }

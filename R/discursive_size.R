@@ -98,9 +98,9 @@ discursive_size <- function(data, openends, meta,
   ## TODO: add option to return complete stm output in larger object
   list(
     size = size_na,
-    out_textProcessor = processed,
-    out_prepDocuments = out,
-    out_stm = stm_fit
+    textProcessor = processed,
+    prepDocuments = out,
+    stm = stm_fit
   )
 }
 
