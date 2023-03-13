@@ -41,13 +41,13 @@ discursive_size <- function(data, openends, meta,
   ## Prepare for stm: textProcessor
   if(is.null(args_textProcessor)) {
     args_textProcessor <- list(documents = resp,
-                               metadata = nomis[,meta])
+                               metadata = nomis[, meta])
   } else {
     args_textProcessor <- as.list(args_textProcessor)
     if("documents" %in% names(args_textProcessor)) warning("documents in args_textProcessor was replaced internally.")
     if("metadata" %in% names(args_textProcessor)) warning("metadata in args_textProcessor was replaced internally.")
     args_textProcessor$documents <- resp
-    args_textProcessor$metadata <- nomis[,meta]
+    args_textProcessor$metadata <- nomis[, meta]
   }
   processed <- do.call(stm::textProcessor, args_textProcessor)
 
@@ -67,9 +67,8 @@ discursive_size <- function(data, openends, meta,
   }
   out <- do.call(stm::prepDocuments, args_prepDocuments)
 
-  ## Remove discarded observations from data
-  nomis <- nomis[-c(processed$docs.removed, out$docs.removed), ]
-  nomis_id <- nomis_id[-c(processed$docs.removed, out$docs.removed)]
+  ## Remove discarded observations from nomis_id
+  nomis_id <- nomis_id[-processed$docs.removed][-out$docs.removed]
 
   ### Fit stm
   if(is.null(args_stm)) {
