@@ -26,4 +26,4 @@
 #'   \item{conjunctions}{also, and}
 #'   \item{exclusive}{but, without}
 #' }
-"dict_constraint"
+"dict_sample"

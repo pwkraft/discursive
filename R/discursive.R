@@ -22,7 +22,7 @@
 #'            meta = c("age", "educ_cont", "pid_cont", "educ_pid", "female"),
 #'            args_prepDocuments = list(lower.thresh = 10),
 #'            args_stm = list(K = 25, seed = 12345),
-#'            dictionary = dict_constraint)
+#'            dictionary = dict_sample)
 discursive <- function(data, openends, meta, args_textProcessor = NULL, args_prepDocuments = NULL, args_stm = NULL, dictionary, remove_duplicates = FALSE, type = c("scale","average","average_scale","product")) {
 
   oe_size <- discursive_size(data = data,

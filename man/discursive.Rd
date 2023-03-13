@@ -47,5 +47,5 @@ discursive(data = cces,
            meta = c("age", "educ_cont", "pid_cont", "educ_pid", "female"),
            args_prepDocuments = list(lower.thresh = 10),
            args_stm = list(K = 25, seed = 12345),
-           dictionary = dict_constraint)
+           dictionary = dict_sample)
 }
