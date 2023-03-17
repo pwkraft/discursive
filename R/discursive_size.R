@@ -68,7 +68,8 @@ discursive_size <- function(data, openends, meta,
   out <- do.call(stm::prepDocuments, args_prepDocuments)
 
   ## Remove discarded observations from nomis_id
-  nomis_id <- nomis_id[-processed$docs.removed][-out$docs.removed]
+  if(length(processed$docs.removed)>0) nomis_id <- nomis_id[-processed$docs.removed]
+  if(!is.null(out$docs.removed)) nomis_id <- nomis_id[-out$docs.removed]
 
   ### Fit stm
   if(is.null(args_stm)) {
