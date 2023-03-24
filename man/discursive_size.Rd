@@ -10,7 +10,8 @@ discursive_size(
   meta,
   args_textProcessor = NULL,
   args_prepDocuments = NULL,
-  args_stm = NULL
+  args_stm = NULL,
+  keep_stm = TRUE
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ discursive_size(
 \item{args_prepDocuments}{A named list containing additional arguments passed to \code{\link[stm:prepDocuments]{stm::prepDocuments()}}.}
 
 \item{args_stm}{A named list containing additional arguments passed to \code{\link[stm:stm]{stm::stm()}}.}
+
+\item{keep_stm}{Logical. If TRUE function additionally returns output of \code{\link[stm:textProcessor]{stm::textProcessor()}}, \code{\link[stm:prepDocuments]{stm::prepDocuments()}}, and \code{\link[stm:stm]{stm::stm()}}.}
 }
 \value{
 A numeric vector with the same length as the number of rows in \code{data}.

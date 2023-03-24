@@ -11,6 +11,7 @@ discursive(
   args_textProcessor = NULL,
   args_prepDocuments = NULL,
   args_stm = NULL,
+  keep_stm = TRUE,
   dictionary,
   remove_duplicates = FALSE,
   type = c("scale", "average", "average_scale", "product")
@@ -28,6 +29,8 @@ discursive(
 \item{args_prepDocuments}{A named list containing additional arguments passed to \code{\link[stm:prepDocuments]{stm::prepDocuments()}}.}
 
 \item{args_stm}{A named list containing additional arguments passed to \code{\link[stm:stm]{stm::stm()}}.}
+
+\item{keep_stm}{Logical. If TRUE function additionally returns output of \code{\link[stm:textProcessor]{stm::textProcessor()}}, \code{\link[stm:prepDocuments]{stm::prepDocuments()}}, and \code{\link[stm:stm]{stm::stm()}}.}
 
 \item{dictionary}{A character vector containing dictionary terms to flag conjunctions and exclusive words. May include regular expressions.}
 
