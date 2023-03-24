@@ -8,7 +8,7 @@
 #' @param args_textProcessor A named list containing additional arguments passed to [stm::textProcessor()].
 #' @param args_prepDocuments A named list containing additional arguments passed to [stm::prepDocuments()].
 #' @param args_stm A named list containing additional arguments passed to [stm::stm()].
-#' @param keep_stm Logical. If TRUE function additionally returns output of [stm::textProcessor()], [stm::prepDocuments()], and [stm::stm()].
+#' @param keep_stm Logical. If TRUE function returns output of [stm::textProcessor()], [stm::prepDocuments()], and [stm::stm()].
 #'
 #' @return A numeric vector with the same length as the number of rows in `data`.
 #' @export
@@ -97,10 +97,15 @@ discursive_size <- function(data, openends, meta,
   size_na[nomis_id] <- size
 
   ## Return output
+  if(!keep_stm){
+    processed <- NULL
+    out <- NULL
+    stm_fit <- NULL
+  }
   list(size = size_na,
-       textProcessor = ifelse(keep_stm, processed, NULL),
-       prepDocuments = ifelse(keep_stm, out, NULL),
-       stm = ifelse(keep_stm, stm_fit, NULL))
+       textProcessor = processed,
+       prepDocuments = out,
+       stm = stm_fit)
 }
 
 

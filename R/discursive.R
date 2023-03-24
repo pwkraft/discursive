@@ -8,7 +8,7 @@
 #' @param args_textProcessor A named list containing additional arguments passed to [stm::textProcessor()].
 #' @param args_prepDocuments A named list containing additional arguments passed to [stm::prepDocuments()].
 #' @param args_stm A named list containing additional arguments passed to [stm::stm()].
-#' @param keep_stm Logical. If TRUE function additionally returns output of [stm::textProcessor()], [stm::prepDocuments()], and [stm::stm()].
+#' @param keep_stm Logical. If TRUE function returns output of [stm::textProcessor()], [stm::prepDocuments()], and [stm::stm()].
 #' @param dictionary A character vector containing dictionary terms to flag conjunctions and exclusive words. May include regular expressions.
 #' @param remove_duplicates Logical. If TRUE duplicates in `dictionary` are removed.
 #' @param type The method of combining the three components, must be "scale", "average", "average_scale", or "product". The default is "scale", which creates an additive index that is re-scaled to mean 0 and standard deviation 1. Alternatively, "average" creates the same additive index without re-scaling; "average_scale" re-scales each individual component to mean 0 and standard deviation 1 before creating the additive index; "product" creates a multiplicative index.
@@ -54,9 +54,9 @@ discursive <- function(data, openends, meta,
       constraint = oe_constraint,
       discursive = oe_discursive
     ),
-    textProcessor = ifelse(keep_stm, oe_size$textProcessor, NULL),
-    prepDocuments = ifelse(keep_stm, oe_size$prepDocuments, NULL),
-    stm = ifelse(keep_stm, oe_size$stm, NULL)
+    textProcessor = oe_size$textProcessor,
+    prepDocuments = oe_size$prepDocuments,
+    stm = oe_size$stm
   )
 }
 
