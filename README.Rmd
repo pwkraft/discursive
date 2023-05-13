@@ -36,9 +36,9 @@ library(discursive)
 cces$discursive <- discursive(data = cces,
                               openends = c(paste0("oe0", 1:9), "oe10"),
                               meta = c("age", "educ_cont", "pid_cont", "educ_pid", "female"),
-                              args_prepDocuments = list(lower.thresh = 10),
+                              args_prepDocuments = list(lower.thresh = 10, verbose = FALSE),
                               args_stm = list(K = 25, seed = 12345, verbose = FALSE),
-                              dictionary = dict_sample)
+                              dictionary = dict_sample, progress = FALSE)$output$discursive
 head(cces)
 ```
 

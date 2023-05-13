@@ -9,6 +9,7 @@
 #' @param args_prepDocuments A named list containing additional arguments passed to [stm::prepDocuments()].
 #' @param args_stm A named list containing additional arguments passed to [stm::stm()].
 #' @param keep_stm Logical. If TRUE function returns output of [stm::textProcessor()], [stm::prepDocuments()], and [stm::stm()].
+#' @param progress Logical. Shows progress bar if TRUE.
 #'
 #' @return A numeric vector with the same length as the number of rows in `data`.
 #' @export
@@ -26,7 +27,8 @@ discursive_size <- function(data, openends, meta,
                             args_textProcessor = NULL,
                             args_prepDocuments = NULL,
                             args_stm = NULL,
-                            keep_stm = TRUE){
+                            keep_stm = TRUE,
+                            progress = TRUE){
 
   ## Check input
   if(!is.data.frame(data)) stop("data must be a data frame.")
@@ -90,7 +92,7 @@ discursive_size <- function(data, openends, meta,
   stm_fit <- do.call(stm::stm, args_stm)
 
   ### Compute number of considerations
-  size <- ntopics(stm_fit, out)
+  size <- ntopics(stm_fit, out, progress)
 
   ### Add NAs for missing observations
   size_na <- rep(NA, nrow(data))
@@ -115,6 +117,7 @@ discursive_size <- function(data, openends, meta,
 #'
 #' @param x A structural topic model estimated via [stm::stm()].
 #' @param docs A set of documents used for the structural topic model; created via [stm::prepDocuments()].
+#' @param progress Logical. Shows progress bar if TRUE.
 #'
 #' @return A numeric vector with the same length as the number of documents in `x` and `docs`.
 #' @import stm
@@ -130,7 +133,7 @@ discursive_size <- function(data, openends, meta,
 #' out <- stm::prepDocuments(processed$documents, processed$vocab, processed$meta, lower.thresh = 10)
 #' stm_fit <- stm::stm(out$documents, out$vocab, prevalence = as.matrix(out$meta), K=25, seed=12345)
 #' ntopics(stm_fit, out)
-ntopics <- function(x, docs){
+ntopics <- function(x, docs, progress = TRUE){
   if(!inherits(x, "STM")) stop("x must be an STM object")
 
   ## P(t|X): probability of topic t given covariates X [nobs,ntopics]
@@ -149,26 +152,27 @@ ntopics <- function(x, docs){
   ntopics <- ncol(pt_x)
   pt_wx <- array(NA, c(nobs, nwords, ntopics))
 
-  cat("\nComputing P(t_i|w,X):\n")
-  pb <- utils::txtProgressBar(min = 1, max = nwords, style = 3)
+  if(progress) cat("\nComputing P(t_i|w,X):\n")
+  if(progress) pb <- utils::txtProgressBar(min = 1, max = nwords, style = 3)
   for(w in 1:nwords){
     for(t in 1:ntopics){
       pt_wx[,w,t] <- pw_t[t,w] * pt_x[,t] / pw_x[,w]
     }
-    utils::setTxtProgressBar(pb, w)
+    if(progress) utils::setTxtProgressBar(pb, w)
   }
-  close(pb)
+  if(progress) close(pb)
 
   ## compute sophistication components
-  cat("\nComputing relative topic counts:\n")
+  if(progress) cat("\nComputing relative topic counts:\n")
   ntopics <- rep(NA, nobs)
-  pb <- utils::txtProgressBar(min = 1, max = nobs, style = 3)
+  if(progress) pb <- utils::txtProgressBar(min = 1, max = nobs, style = 3)
   for(n in 1:nobs){
     maxtopic_wx <- apply(pt_wx[n,,],1,which.max) # which topic has the highest probability for each word (given X)
     ntopics[n] <- length(unique(maxtopic_wx[docs$documents[[n]][1,]])) # number of topics in response
-    utils::setTxtProgressBar(pb, n)
+    if(progress) utils::setTxtProgressBar(pb, n)
   }
-  cat("\n\n")
+  if(progress) close(pb)
+  if(progress) cat("\n\n")
 
   ## return rescaled measure
   ntopics/max(ntopics)
