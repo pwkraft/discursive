@@ -14,7 +14,8 @@ discursive(
   keep_stm = TRUE,
   dictionary,
   remove_duplicates = FALSE,
-  type = c("scale", "average", "average_scale", "product")
+  type = c("scale", "average", "average_scale", "product"),
+  progress = TRUE
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ discursive(
 \item{remove_duplicates}{Logical. If TRUE duplicates in \code{dictionary} are removed.}
 
 \item{type}{The method of combining the three components, must be "scale", "average", "average_scale", or "product". The default is "scale", which creates an additive index that is re-scaled to mean 0 and standard deviation 1. Alternatively, "average" creates the same additive index without re-scaling; "average_scale" re-scales each individual component to mean 0 and standard deviation 1 before creating the additive index; "product" creates a multiplicative index.}
+
+\item{progress}{Logical. Shows progress bar if TRUE.}
 }
 \value{
 A numeric vector with the same length as the number of rows in \code{data}.

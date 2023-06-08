@@ -67,7 +67,7 @@ discursive <- function(data, openends, meta,
 #'
 #' This function combines the `size`, `range`, and `constraint` of open-ended responses in a single scale. See Kraft (2023) for details.
 #'
-#' @param size A numeric vector containing the size component of discursive sophistication. Usually created via [discursive_size()].
+#' @param size A named list containing an element labeled `size`, which itself consists of a numeric vector containing the size component of discursive sophistication. Usually created via [discursive_size()].
 #' @param range A numeric vector containing the range component of discursive sophistication. Usually created via [discursive_range()].
 #' @param constraint A numeric vector containing the constraint component of discursive sophistication. Usually created via [discursive_constraint()].
 #' @param type The method of combining the three components, must be "scale", "average", "average_scale", or "product". The default is "scale", which creates an additive index that is re-scaled to mean 0 and standard deviation 1. Alternatively, "average" creates the same additive index without re-scaling; "average_scale" re-scales each individual component to mean 0 and standard deviation 1 before creating the additive index; "product" creates a multiplicative index.
@@ -76,7 +76,7 @@ discursive <- function(data, openends, meta,
 #' @export
 #'
 #' @examples
-#' discursive_combine(size = runif(100), range = runif(100), constraint = runif(100))
+#' discursive_combine(size = list(size = runif(100)), range = runif(100), constraint = runif(100))
 discursive_combine <- function(size, range, constraint, type = c("scale","average","average_scale","product")) {
   type <- match.arg(type)
   switch(type,

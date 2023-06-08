@@ -12,7 +12,7 @@ discursive_combine(
 )
 }
 \arguments{
-\item{size}{A numeric vector containing the size component of discursive sophistication. Usually created via \code{\link[=discursive_size]{discursive_size()}}.}
+\item{size}{A named list containing an element labeled \code{size}, which itself consists of a numeric vector containing the size component of discursive sophistication. Usually created via \code{\link[=discursive_size]{discursive_size()}}.}
 
 \item{range}{A numeric vector containing the range component of discursive sophistication. Usually created via \code{\link[=discursive_range]{discursive_range()}}.}
 
@@ -27,5 +27,5 @@ A numeric vector with the same length as the number of rows in \code{data}.
 This function combines the \code{size}, \code{range}, and \code{constraint} of open-ended responses in a single scale. See Kraft (2023) for details.
 }
 \examples{
-discursive_combine(size = runif(100), range = runif(100), constraint = runif(100))
+discursive_combine(size = list(size = runif(100)), range = runif(100), constraint = runif(100))
 }

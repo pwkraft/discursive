@@ -11,7 +11,8 @@ discursive_size(
   args_textProcessor = NULL,
   args_prepDocuments = NULL,
   args_stm = NULL,
-  keep_stm = TRUE
+  keep_stm = TRUE,
+  progress = TRUE
 )
 }
 \arguments{
@@ -28,6 +29,8 @@ discursive_size(
 \item{args_stm}{A named list containing additional arguments passed to \code{\link[stm:stm]{stm::stm()}}.}
 
 \item{keep_stm}{Logical. If TRUE function returns output of \code{\link[stm:textProcessor]{stm::textProcessor()}}, \code{\link[stm:prepDocuments]{stm::prepDocuments()}}, and \code{\link[stm:stm]{stm::stm()}}.}
+
+\item{progress}{Logical. Shows progress bar if TRUE.}
 }
 \value{
 A numeric vector with the same length as the number of rows in \code{data}.

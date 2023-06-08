@@ -4,12 +4,14 @@
 \alias{ntopics}
 \title{Compute number of topics based on stm results}
 \usage{
-ntopics(x, docs)
+ntopics(x, docs, progress = TRUE)
 }
 \arguments{
 \item{x}{A structural topic model estimated via \code{\link[stm:stm]{stm::stm()}}.}
 
 \item{docs}{A set of documents used for the structural topic model; created via \code{\link[stm:prepDocuments]{stm::prepDocuments()}}.}
+
+\item{progress}{Logical. Shows progress bar if TRUE.}
 }
 \value{
 A numeric vector with the same length as the number of documents in \code{x} and \code{docs}.
