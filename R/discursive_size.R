@@ -11,18 +11,18 @@
 #' @param keep_stm Logical. If TRUE function returns output of [stm::textProcessor()], [stm::prepDocuments()], and [stm::stm()].
 #' @param progress Logical. Shows progress bar if TRUE.
 #'
-#' @return A numeric vector with the same length as the number of rows in `data`.
+#' @return A list containing the size component of discursive sophistication as well as the output of [stm::textProcessor()], [stm::prepDocuments()], and [stm::stm()].
 #' @export
 #' @import stm
 #' @import tm
 #' @import SnowballC
 #'
 #' @examples
-#' discursive_size(data = cces,
+#' \dontrun{discursive_size(data = cces,
 #'                 openends = c(paste0("oe0", 1:9), "oe10"),
 #'                 meta = c("age", "educ_cont", "pid_cont", "educ_pid", "female"),
 #'                 args_prepDocuments = list(lower.thresh = 10),
-#'                 args_stm = list(K = 25, seed = 12345))
+#'                 args_stm = list(K = 25, seed = 12345))}
 discursive_size <- function(data, openends, meta,
                             args_textProcessor = NULL,
                             args_prepDocuments = NULL,
@@ -125,14 +125,14 @@ discursive_size <- function(data, openends, meta,
 #' @export
 #'
 #' @examples
-#' meta <- c("age", "educ_cont", "pid_cont", "educ_pid", "female")
+#' \dontrun{meta <- c("age", "educ_cont", "pid_cont", "educ_pid", "female")
 #' openends <- c(paste0("oe0", 1:9), "oe10")
 #' cces$resp <- apply(cces[, openends], 1, paste, collapse = " ")
 #' cces <- cces[!apply(cces[, meta], 1, anyNA), ]
 #' processed <- stm::textProcessor(cces$resp, metadata = cces[, meta])
 #' out <- stm::prepDocuments(processed$documents, processed$vocab, processed$meta, lower.thresh = 10)
 #' stm_fit <- stm::stm(out$documents, out$vocab, prevalence = as.matrix(out$meta), K=25, seed=12345)
-#' ntopics(stm_fit, out)
+#' ntopics(stm_fit, out)}
 ntopics <- function(x, docs, progress = TRUE){
   if(!inherits(x, "STM")) stop("x must be an STM object")
 

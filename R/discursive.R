@@ -15,16 +15,16 @@
 #' @param progress Logical. Shows progress bar if TRUE.
 
 #'
-#' @return A numeric vector with the same length as the number of rows in `data`.
+#' @return A list containing the measure of discursive sophistication and the underlying components in a data frame, as well as the output of [stm::textProcessor()], [stm::prepDocuments()], and [stm::stm()].
 #' @export
 #'
 #' @examples
-#' discursive(data = cces,
+#' \dontrun{discursive(data = cces,
 #'            openends = c(paste0("oe0", 1:9), "oe10"),
 #'            meta = c("age", "educ_cont", "pid_cont", "educ_pid", "female"),
 #'            args_prepDocuments = list(lower.thresh = 10),
 #'            args_stm = list(K = 25, seed = 12345),
-#'            dictionary = dict_sample)
+#'            dictionary = dict_sample)}
 discursive <- function(data, openends, meta,
                        args_textProcessor = NULL,
                        args_prepDocuments = NULL,
