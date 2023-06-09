@@ -1,10 +1,10 @@
 Package: discursive
-Title: Measuring discursive sophistication in open-ended survey responses
+Title: Measuring Discursive Sophistication in Open-Ended Survey Responses
 Version: 0.1.1
 Authors@R: 
-    person("Patrick", "Kraft", , "kraft.pw@gmail.com", role = c("aut", "cre"),
+    person("Patrick", "Kraft", , "kraft.pw@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0003-0123-221X"))
-Description: This package implements a simple framework to measure political sophistication based on open-ended survey responses. Discursive sophistication captures the complexity of individual attitude expression by quantifying its relative size, range, and constraint. For more information on the measurement approach see: Kraft, Patrick W. 2023. "Women Also Know Stuff: Challenging the Gender Gap in Political Sophistication." American Political Science Review (forthcoming).
+Description: A simple approach to measure political sophistication based on open-ended survey responses. Discursive sophistication captures the complexity of individual attitude expression by quantifying its relative size, range, and constraint. For more information on the measurement approach see: Kraft, Patrick W. 2023. "Women Also Know Stuff: Challenging the Gender Gap in Political Sophistication." American Political Science Review (forthcoming).
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
