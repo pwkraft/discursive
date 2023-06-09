@@ -1,6 +1,6 @@
 Package: discursive
 Title: Measuring discursive sophistication in open-ended survey responses
-Version: 0.1.0.9000
+Version: 0.1.1
 Authors@R: 
     person("Patrick", "Kraft", , "kraft.pw@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-0123-221X"))
