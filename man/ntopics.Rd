@@ -20,7 +20,7 @@ A numeric vector with the same length as the number of documents in \code{x} and
 This function takes a structural topic model output estimated via \code{\link[stm:stm]{stm::stm()}} as well as the underlying set of documents created via \code{\link[stm:prepDocuments]{stm::prepDocuments()}} to compute the relative number of topics raised in each open-ended response. The function returns a numeric vector of topic counts re-scaled to range from 0 to 1. See Kraft (2023) for details.
 }
 \examples{
-\dontrun{meta <- c("age", "educ_cont", "pid_cont", "educ_pid", "female")
+\donttest{meta <- c("age", "educ_cont", "pid_cont", "educ_pid", "female")
 openends <- c(paste0("oe0", 1:9), "oe10")
 cces$resp <- apply(cces[, openends], 1, paste, collapse = " ")
 cces <- cces[!apply(cces[, meta], 1, anyNA), ]

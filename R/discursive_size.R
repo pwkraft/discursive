@@ -18,7 +18,7 @@
 #' @import SnowballC
 #'
 #' @examples
-#' \dontrun{discursive_size(data = cces,
+#' \donttest{discursive_size(data = cces,
 #'                 openends = c(paste0("oe0", 1:9), "oe10"),
 #'                 meta = c("age", "educ_cont", "pid_cont", "educ_pid", "female"),
 #'                 args_prepDocuments = list(lower.thresh = 10),
@@ -125,7 +125,7 @@ discursive_size <- function(data, openends, meta,
 #' @export
 #'
 #' @examples
-#' \dontrun{meta <- c("age", "educ_cont", "pid_cont", "educ_pid", "female")
+#' \donttest{meta <- c("age", "educ_cont", "pid_cont", "educ_pid", "female")
 #' openends <- c(paste0("oe0", 1:9), "oe10")
 #' cces$resp <- apply(cces[, openends], 1, paste, collapse = " ")
 #' cces <- cces[!apply(cces[, meta], 1, anyNA), ]

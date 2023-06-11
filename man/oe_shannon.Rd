@@ -15,8 +15,3 @@ Numeric vector with the same length as x.
 \description{
 Internal function to compute Shannon entropy in relative word counts across a set of elements in a character vecotr. Entropy is re-scaled to range from 0 to 1. Function used in \code{\link[=discursive_range]{discursive_range()}}.
 }
-\examples{
-\dontrun{
-oe_shannon(c(paste(rep("Word", 10), collapse = " "), "Word"))
-}
-}

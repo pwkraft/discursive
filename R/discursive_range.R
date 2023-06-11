@@ -33,11 +33,6 @@ discursive_range <- function(data, openends) {
 #' @param x Character vector containing open-ended responses.
 #'
 #' @return Numeric vector with the same length as x.
-#'
-#' @examples
-#' \dontrun{
-#' oe_shannon(c(paste(rep("Word", 10), collapse = " "), "Word"))
-#' }
 oe_shannon <- function(x){
   item_word_n <- stringr::str_count(x, "\\w+")
   item_word_p <- item_word_n / sum(item_word_n)

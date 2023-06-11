@@ -39,7 +39,7 @@ A list containing the size component of discursive sophistication as well as the
 This function takes a data frame (\code{data}) containing a set of open-ended responses (\code{openends}) and additional arguments passed to \code{\link[stm:textProcessor]{stm::textProcessor()}} and \code{\link[stm:prepDocuments]{stm::prepDocuments()}} to estimate a structural topic model via \code{\link[stm:stm]{stm::stm()}}. The results of the the structural topic model are used to compute the relative number of topics raised in each open-ended response. The function returns a numeric vector of topic counts re-scaled to range from 0 to 1. See Kraft (2023) for details.
 }
 \examples{
-\dontrun{discursive_size(data = cces,
+\donttest{discursive_size(data = cces,
                 openends = c(paste0("oe0", 1:9), "oe10"),
                 meta = c("age", "educ_cont", "pid_cont", "educ_pid", "female"),
                 args_prepDocuments = list(lower.thresh = 10),

@@ -48,7 +48,7 @@ A list containing the measure of discursive sophistication and the underlying co
 This function takes a data frame (\code{data}) containing a set of open-ended responses (\code{openends}) to compute the three components of discursive sophistication (size, range, and constraint) and combines them in a single scale. See Kraft (2023) for details.
 }
 \examples{
-\dontrun{discursive(data = cces,
+\donttest{discursive(data = cces,
            openends = c(paste0("oe0", 1:9), "oe10"),
            meta = c("age", "educ_cont", "pid_cont", "educ_pid", "female"),
            args_prepDocuments = list(lower.thresh = 10),
