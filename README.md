@@ -16,8 +16,15 @@ Sophistication.” American Political Science Review (forthcoming).
 
 ## Installation
 
-You can install the development version of discursive from
-[GitHub](https://github.com/) with:
+`discursive` is now available on CRAN! You can install the latest
+version with:
+
+``` r
+install.packages("discursive")
+```
+
+Alternatively, you can install the development version of discursive
+from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
